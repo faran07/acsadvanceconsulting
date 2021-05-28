@@ -1,0 +1,57 @@
+﻿@model Tuple<WebApplication1.Models.IndexViewModel, WebApplication1.Models.Users>
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.Item1.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>Campaigns:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Create Campaigns", "AddCampaign")
+            ]
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>Small Businesses:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Create Small Businesses", "AddSmallBusiness")
+            ]
+        </dd>
+    </dl>
+
+    @if (Model.Item2.userType == "Admin")
+    {
+        <dl class="dl-horizontal">
+            <dt>Pending Requests:</dt>
+            <dd>
+                [
+                @Html.ActionLink("View Pending Requests", "ViewRequests")
+                ]
+            </dd>
+        </dl>
+    }
+
+</div>

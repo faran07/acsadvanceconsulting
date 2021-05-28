@@ -1,0 +1,40 @@
+﻿@model WebApplication1.Models.Campaigns
+@{
+    ViewBag.Title = "Add Campaign";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("AddCampaign", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Title", new { @class = "col-md-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Description", new { @class = "col-md-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Upload File", new { @class = "col-md-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.ImageFile, new { type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

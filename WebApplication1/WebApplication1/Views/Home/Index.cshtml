@@ -1,0 +1,572 @@
+﻿@*@section SPAViews {
+        @Html.Partial("_Home")
+    }
+    @section Scripts{
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/app")
+    }*@
+<!--<!-- ko with: home -->-->
+<!--@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+@*<div class="row">
+        <div class="col-md-4">
+            <h2>Your information</h2>
+            <p>This section shows how you can call ASP.NET Web API to get the user details.</p>
+            <p data-bind="text: myHometown"></p>
+
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=273732">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET Single Page Application (SPA) helps you build applications that include significant client-side interactions using HTML, CSS, and JavaScript.
+                It's now easier than ever before to getting started writing highly interactive web applications.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=273732">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <link href="~/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            border: 1px solid #ef664d;
+            background-color: #ef664d;
+            color: #FFFFFF;
+            /* background-color: #555;
+        color: white; */
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 85px;
+            right: 28px;
+            width: 280px;
+        }
+
+        .registration-button {
+            border: 1px solid #ef664d;
+            background-color: #ef664d;
+            color: #FFFFFF;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+            /* Full-width input fields */
+            .form-container input[type=text], .form-container input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                border: none;
+                background: #f1f1f1;
+            }
+
+                /* When the inputs get focus, do something */
+                .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+                    background-color: #ddd;
+                    outline: none;
+                }
+
+            /* Set a style for the submit/login button */
+            .form-container .btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 20px;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                margin-bottom: 10px;
+                opacity: 0.8;
+            }
+
+            /* Add a red background color to the cancel button */
+            .form-container .cancel {
+                background-color: red;
+            }
+
+            /* Add some hover effects to buttons */
+            .form-container .btn:hover, .open-button:hover {
+                opacity: 1;
+            }
+    </style>
+    <script src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1200);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="header" style="width:max-content" id="head">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    @*<a href="index.html"><img src="~/images/logo.png" alt="" /></a>*@
+                    <!--replace logo img-->
+                </div>
+                <div class="top-menu">
+                    <span class="menu"> </span>
+                    <ul>
+                        <nav class="cl-effect-5">
+                            <li><a class="active" href="index.html"><span data-hover="Home" style="color:forestgreen">home</span></a></li>
+                            <li><a href="#features" class="scroll"><span data-hover="Features" style="color:forestgreen">features</span></a></li>
+                            <!-- <li><a href="#partners" class="scroll"><span data-hover="Partners"><span>partners</span></a></li> -->
+                            <li><a href="#blog" class="scroll"><span data-hover="Blog" style="color:forestgreen">blog</span></a></li>
+                            <li><a href="#about" class="scroll"><span data-hover="About" style="color:forestgreen">about</span></a></li>
+                            <li><a href="#contact" class="scroll"><span data-hover="Conatct" style="color:forestgreen">contact</span></a></li>
+                            <!-- <li><a href="#login"  class="scroll"><span data-hover="Login/Register">Login/Register</span></a></li> -->
+                        </nav>
+                    </ul>
+                </div>
+
+                <!--script-nav-->
+                <script>
+                    $("span.menu").click(function () {
+                        $(".top-menu ul").slideToggle("fast", function () { });
+                    });
+                </script>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <!--Header Image -->
+            <div class="index-banner">
+                <div class="wmuSlider example1">
+                    <div class="wmuSliderWrapper">
+                        <article style="position: absolute; width: 100%; opacity: 0;">
+                            <div class="banner-wrap1">
+                                <div class="banner_center">
+                                    <!-- <h1>text 1,</h1>
+                                    <h2>text 1 <span>test text 1</span></h2>
+                                    <h2>text 1</h2> -->
+
+                                </div>
+                            </div>
+                        </article>
+
+                        <article style="position: absolute; width: 100%; opacity: 0;">
+                            <div class="banner-wrap4">
+                                <div class="banner_center">
+                                    <!--  <h1>text 3,</h1>
+                                    <h2>text 3<span>text 3 here</span></h2>
+                                    <h2>text 3</h2> -->
+                                </div>
+                            </div>
+                        </article>
+
+                        <article style="position: absolute; width: 100%; opacity: 0;">
+                            <div class="banner-wrap5">
+                                <div class="banner_center">
+                                    <!--  <h1>text 3,</h1>
+                                    <h2>text 3<span>text 3 here</span></h2>
+                                    <h2>text 3</h2> -->
+                                </div>
+                            </div>
+                        </article>
+
+
+                    </div>
+
+                </div>
+                <script src="~/js/jquery.wmuSlider.js"></script>
+                <script>
+                    $('.example1').wmuSlider();
+                </script>
+            </div>
+        </div>
+    </div>
+    <!--header image end -->
+    <!--Feature Section starts-->
+
+
+    <div class="features-section" id="features" style="background-color: white;">
+        <div class="features-header">
+            <h3>Business Features</h3>
+        </div>
+        <div class="feature-section-bottom-row" id="feature">
+            <div class="container">
+                @*<script type="text/javascript" src="~/js/easyResponsiveTabs.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                $('#horizontalTab').easyResponsiveTabs({
+                                    type: 'default',
+                                    width: 'auto', //auto or any width like 600px
+                                    fit: true // 100% fit in a container
+
+                                });
+                            });
+                    </script>*@
+
+                <link rel="stylesheet" href="~/css/swipebox.css">
+                <script src="~/js/jquery.swipebox.min.js"></script>
+                <script type="text/javascript">
+                    jQuery(function ($) {
+                        $(".swipebox").swipebox();
+                    });
+                </script>
+
+                <div class="sap_tabs">
+                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+
+                        <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"></li>
+                        <div class="clearfix"></div>
+
+
+                        <div id="featurelist">
+                            <div class="tab_img">
+                                <div class="col-md-4 img-top grid_box">
+                                    <a href="~/images/f1.png" class="swipebox" title="Image Title">
+                                        <img src="~/images/f1.png" class="img-responsive" alt="">
+                                        <span class="zoom-icon"><p class="textstyle">Local Awareness</p></span>
+
+                                    </a>
+                                </div>
+                                <div class="col-md-4 img-top grid_box">
+                                    <a href="~/images/f2.png" class="swipebox" title="Image Title">
+                                        <img src="~/images/f2.png" class="img-responsive" alt="">
+                                        <span class="zoom-icon"><p class="textstyle">Local Business Awareness</p></span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 img-top grid_box">
+                                    <a href="~/images/f3.png" class="swipebox" title="Image Title">
+                                        <img src="~/images/f3.png" class="img-responsive" alt="">
+                                        <span class="zoom-icon"><p class="textstyle">Social Awareness</p></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow">
+                <a href="#blog" class="scroll"><img src="~/images/arrow.png" alt="" /></a>
+            </div>
+            <!-- Features-section-ends -->
+            <!--Feature Section starts-->
+            <!--
+
+                <div class="features-section" id="features" id="features" style="background-color: white;">
+                    <div class="features-header">
+                        <h3>Features</h3>
+                        <p> ----This is the intro for the features---- </p>
+                    </div>
+                    <div class="feature-section-bottom-row" id="feature">
+                        <div class="container">
+
+                            <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $('#horizontalTab').easyResponsiveTabs({
+                                        type: 'default',
+                                        width: 'auto', //auto or any width like 600px
+                                        fit: true // 100% fit in a container
+                                    });
+                                });
+                            </script>
+
+                            <link rel="stylesheet" href="css/swipebox.css">
+                            <script src="js/jquery.swipebox.min.js"></script>
+                            <script type="text/javascript">
+                                jQuery(function($) {
+                                    $(".swipebox").swipebox();
+                                });
+                            </script>
+
+                            <div class="sap_tabs">
+                                <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+
+                                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span></li>
+                                        <div class="clearfix"></div>
+
+
+                                    <div id="featurelist">
+                                        <div class="resp-tabs-container">
+                                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                                                <div class="tab_img">
+                                                    <div class="col-md-4 img-top grid_box">
+                                                        <a href="images/f1.jpg" class="swipebox" title="Image Title">
+                                                            <img src="images/f1.jpg" class="img-responsive" alt="">
+                                                            <span class="zoom-icon"><p class="textstyle">fhsdj fhkjdshf kdshf</p></span>
+
+                                        </a>
+
+                                <div class="col-md-4 img-top grid_box">
+                                    <a href="images/f2.jpg" class="swipebox" title="Image Title">
+                                        <img src="images/f2.jpg" class="img-responsive" alt="">
+                                        <span class="zoom-icon"><p class="textstyle">fhsdj fhkjdshf dfjhgsjdf kdshf loream text alpha </p></span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 img-top grid_box">
+                                    <a href="images/f3.jpg" class="swipebox" title="Image Title">
+                                        <img src="images/f3.jpg" class="img-responsive" alt="">
+                                        <span class="zoom-icon"><p class="textstyle">fhsdj fhkjdshfasdes asiydi my loream kasdk uiaysd kdshf</p></span>
+                                    </a>
+                                </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+                </div>
+
+            Feature Section ends-->
+            <!--Blog Section starts-->
+
+            <div class="blog-section" id="blog">
+                <div class="container">
+                    <div class="blog-header">
+                        <h3>Blog</h3>
+                    </div>
+                    <div class="blog-sectiongrids">
+                        <div class="col-md-4 blog-grid">
+
+                            <h4>SAVE PLANET EARTH</h4>
+                            <p style="text-align:justify"><b>Climate emergency campaigners work really hard. They have sacrificed money, careers, job security, and family time. Some might have ditched the dinghy and swum their loved ones to safety if that were possible but the dinghy metaphor doesn’t extend that far. There’s no Planet B - we’re all in this together. To be clear, a climate emergency means breaking business as usual to the same degree COVID-19 has broken it and more, but swap staying home, face masks, and hand sanitizer, for green armies, mass retrofits, and technological leaps. Grassroots campaigners forged the climate emergency path, campaigning for what is necessary, not what is convenient.</b></p>
+                        </div>
+                        <div class="col-md-4 blog-grid">
+
+                            <h4>Why shop locally?</h4>
+                            <p style="text-align:justify"><b>When you support locally owned businesses, you’re not only supporting the local economy and the employment of local people. You are also directly supporting your local sporting groups and your local community in general. There are many studies that indicate that shopping locally has major economic benefits for your local community as evidenced by the chart. So when you spend $100 at a local business, on average 58% more of your money stays in your community compared to what would have happened if you spent that $100 at a multinational company based store.</b></p>
+                        </div>
+                        <div class="col-md-4 blog-grid">
+
+                            <h4>The Value of Women Empowerment Today!</h4>
+                            <p style="text-align:justify">
+                                <b>
+                                    It’s official – a shift towards women empowerment is underway. Bridging the gender income gap is no longer a conversation centered around complaints and inactivity. Gender equality is a full-force movement with a loud voice.
+                                    Gender disparity within roles of leadership has been built over generations. Stereotypes and patriarchal cultures have been nurtured by non-inclusive working customs and practices. World Economic Forum’s report, The Future of Jobs, spoke with hundreds of Chief Human Resource Officers, from over 350 leading companies about why there is such an absence of female leaders.
+                                </b>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="arrow1">
+                            <a href="#about" class="scroll"><img src="~/images/arrow1.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--ABOUT SECTION-->
+        <div class="content" style="background-color: #2a404e;">
+            <div class="about-section" id="about" id="about" style="background-color: #2a404e;">
+                <div class="container">
+                    <div class="about-header">
+                        <h3>ABOUT</h3>
+
+                    </div>
+                    <div class="about-text">
+                        <p style="text-align:justify"> <b> Advance Consulting Group is a team of experienced industry professionals that work together to help communities to make an impact towards a positive change. We are a social awareness platform that help local communities and small business to enhance there online engagement. We work for better tomorrow! </b> </p>
+
+                    </div>
+
+
+                    <div class="clearfix"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="arrow1">
+            <a href="#contact" class="scroll"><img src="~/images/arrow1.png" alt="" /></a>
+        </div>
+    </div>
+    <!-- ABOUT -section-ends -->
+    @*<button class="open-button" onclick="openForm()">Login</button>
+        <button class="registration-button" onclick="registerForm()">Register</button>
+
+        <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <h1>Login</h1>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit" class="btn">Login</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+
+        <div class="form-popup" id="myRegistrationForm">
+            <form action="/action_page.php" class="form-container">
+                <h1>Login</h1>
+
+                <label><b>Name</b></label>
+                <input type="text" placeholder="Enter Name" name="username" required>
+
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <label><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="psw" required>
+
+                <label for="psw"><b>Company</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit" class="btn">Register</button>
+                <button type="button" class="btn cancel" onclick="closeRegistrationForm()">Close</button>
+            </form>
+        </div>
+
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+
+            function registerForm() {
+                document.getElementById("myRegistrationForm").style.display = "block";
+            }
+
+            function closeRegistrationForm() {
+                document.getElementById("myRegistrationForm").style.display = "none";
+            }
+        </script>*@
+
+    <div class="footer-section" id="contact" style="background-color: white">
+        <div class="container">
+            <div class="contact-header">
+                <h3> contact</h3>
+                <p> Pleae leave a message here:</p>
+            </div>
+            <div class="social-icon" style="background-color: #2a404e;">
+                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="icon1"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i class="icon2"></i></a>
+                <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer"><i class="icon3"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><i class="icon4"></i></a>
+
+            </div>
+            <br>
+            <div class="contact">
+                <form>
+                    <div class="contactgrid">
+                        <input type="text" class="text" value=" name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = ' name';}">
+                    </div>
+                    <div class="contactgrid">
+                        <input type="text" class="text" value="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'email';}">
+                    </div>
+                    <div class="contactgrid">
+                        <input type="text" class="text" value="phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'phone';}">
+                    </div>
+                    <div class="contactgrid1">
+                        <textarea onfocus="if(this.value == 'Your Message') this.value='';" onblur="if(this.value == '') this.value='Your Message';">Your Message</textarea>
+                    </div>
+
+                    <div class="contactgrid2">
+                        <button type="submit" class="butto">Send</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <script type="text/javascript" src="~/js/easing.js"></script>
+            @*<script type="text/javascript">
+                    $(document).ready(function () {
+
+                        $().uitotop({
+                            easingtype: 'easeoutquart'
+                        });
+
+                    });
+                </script>*@
+            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom" style="background-color: #2a404e;">
+
+        <p style="color: white;">
+            &copy; All rights Reserved 2021</a>
+        </p>
+
+    </div>
+
+
+
+</body>
+
+</html>
